@@ -23,7 +23,7 @@ public class UserController {
 
 
     @GetMapping("/new")
-    public String createNewUser(Model model){
+    public String getUserFormForCreate(Model model){
         model.addAttribute("user", new User());
         return "new";
     }
@@ -34,13 +34,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}/edit")
-    public String editUser(Model model, @PathVariable("id") Long id){
+    public String getFormForEditUser(Model model, @PathVariable("id") Long id){
         model.addAttribute("user", userService.getUserById(id));
         return "edit";
     }
 
     @PatchMapping("/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id){
+    public String updateEditUser(@ModelAttribute("user") User user, @PathVariable("id") Long id){
         userService.editUser(id, user);
         return "redirect:/";
     }
